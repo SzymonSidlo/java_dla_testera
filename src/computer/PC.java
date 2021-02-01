@@ -6,7 +6,7 @@ public class PC extends Computer {
 
     public PC(String name, String type, int hdd, int ram) {
         super(name, type, hdd, ram);
-        powerConnection = true;
+        powerConnection = false;
 
     }
 
@@ -24,7 +24,7 @@ public class PC extends Computer {
         }
     }
 
-        public void setPowerConnection(boolean newPowerConnection) {
+    public void setPowerConnection(boolean newPowerConnection) {
         powerConnection = newPowerConnection;
     }
 

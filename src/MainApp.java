@@ -13,12 +13,12 @@ public class MainApp {
 
         // Test 1 : próba gdy PC jest podłączony do prądu
 
-//        officeComputer.switchOn();
-//        System.out.println(officeComputer.getState());
+        officeComputer.switchOn();
+        System.out.println(officeComputer.getState());
 
         // Test 2 :  próba gdy PC jest odłączony od prądu
 
-        officeComputer.setPowerConnection(false);
+        officeComputer.setPowerConnection(true);
         officeComputer.switchOn();
         System.out.println(officeComputer.getState());
 
