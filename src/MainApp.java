@@ -1,26 +1,25 @@
 import computer.PC;
+import computer.Computer;
 import computer.Laptop;
 
 public class MainApp {
     public static void main(String[] args) {
 
-        PC officeComputer = new PC("Office computer", "HP", 500, 128);
-        Laptop gamingLaptop = new Laptop("XGames", "HP Games", 500, 256, 50);
+        Computer officeComputer = new PC("Office computer", "HP", 500, 128);
+        Computer gamingLaptop = new Laptop("XGames", "HP Games", 500, 256, 50);
 
-//        gamingLaptop.setBatteryLevel(0);
-//        gamingLaptop.switchOn();
-//        System.out.println(gamingLaptop.getState());
+        officeComputer.volumeUp();
 
-        // Test 1 : próba gdy PC jest podłączony do prądu
+        System.out.println(officeComputer.getVolumeLevel());
+        officeComputer.volumeUp(50);
+        System.out.println(officeComputer.getVolumeLevel());
+        officeComputer.volumeUp(50);
+        System.out.println(officeComputer.getVolumeLevel());
 
-        officeComputer.switchOn();
-        System.out.println(officeComputer.getState());
-
-        // Test 2 :  próba gdy PC jest odłączony od prądu
-
-        officeComputer.setPowerConnection(true);
-        officeComputer.switchOn();
-        System.out.println(officeComputer.getState());
+        officeComputer.volumeDown(10);
+        System.out.println(officeComputer.getVolumeLevel());
+        officeComputer.volumeDown(100);
+        System.out.println(officeComputer.getVolumeLevel());
 
     }
 }

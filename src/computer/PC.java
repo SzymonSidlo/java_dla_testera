@@ -14,6 +14,39 @@ public class PC extends Computer {
         System.out.println(name);
     }
 
+    public int volumeUp() {
+        return volumeLevel += 1;
+    }
+
+    @Override
+    public int volumeUp(int newVolumeLevel) {
+        volumeLevel = volumeLevel + newVolumeLevel;
+        if (volumeLevel >= 100) {
+            volumeLevel = 100;
+        }
+        return volumeLevel;
+    }
+
+    @Override
+    public int volumeDown() {
+        volumeLevel -= 1;
+        if (volumeLevel <= 0) {
+            return 0;
+        } else {
+            return volumeLevel;
+        }
+    }
+
+    @Override
+    public int volumeDown(int newVolumeLevel) {
+        volumeLevel = volumeLevel - newVolumeLevel;
+        if (volumeLevel <= 0) {
+            volumeLevel = 0;
+        }
+        return volumeLevel;
+    }
+
+
     @Override
     public void switchOn() {
         System.out.println("Checking power connection");
@@ -24,8 +57,15 @@ public class PC extends Computer {
         }
     }
 
+    @Override
+    public void switchOff() {
+        System.out.println("Wyłączam PCta " + name);
+        state = false;
+    }
+
     public void setPowerConnection(boolean newPowerConnection) {
         powerConnection = newPowerConnection;
     }
+
 
 }
