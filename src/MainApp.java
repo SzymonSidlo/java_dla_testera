@@ -1,25 +1,23 @@
-import computer.PC;
-import computer.Computer;
-import computer.Laptop;
+
 
 public class MainApp {
     public static void main(String[] args) {
 
-        Computer officeComputer = new PC("Office computer", "HP", 500, 128);
-        Computer gamingLaptop = new Laptop("XGames", "HP Games", 500, 256, 50);
+        BugReporter bugReporter = new BugReporter("Szymon", "Sidło", "raporty@gmail.com");
+        Bug bug1 = new Bug("Wrong data source", 3, bugReporter);
 
-        officeComputer.volumeUp();
+        System.out.println(bug1);
 
-        System.out.println(officeComputer.getVolumeLevel());
-        officeComputer.volumeUp(50);
-        System.out.println(officeComputer.getVolumeLevel());
-        officeComputer.volumeUp(50);
-        System.out.println(officeComputer.getVolumeLevel());
+//        // WALIDACJA E-MAIL
+        System.out.println(bugReporter.getEmail());
+        bugReporter.setEmail("Mail_bez_malpy_wp.pl");
+        System.out.println(bugReporter.getEmail());
 
-        officeComputer.volumeDown(10);
-        System.out.println(officeComputer.getVolumeLevel());
-        officeComputer.volumeDown(100);
-        System.out.println(officeComputer.getVolumeLevel());
+//        // WALIDACJA METODY Z INTERFEJSU
+        bug1.setBugStatus(true);
+        System.out.println(bug1.isBugStatus());
+        bug1.setBugStatus(false);
+        System.out.println(bug1.isBugStatus());
 
     }
 }
