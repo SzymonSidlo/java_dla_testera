@@ -1,23 +1,34 @@
-
+import java.util.*;
 
 public class MainApp {
     public static void main(String[] args) {
+        // Pkt 1 : Lista bugów
+        Set<Bug> bugs = new HashSet<>();
 
-        BugReporter bugReporter = new BugReporter("Szymon", "Sidło", "raporty@gmail.com");
-        Bug bug1 = new Bug("Wrong data source", 3, bugReporter);
+        bugs.add(new Bug("Font_Size_Error", 2, "Reporter1"));
+        bugs.add(new Bug("Database_Connection_Failure", 4, "Reporter2"));
+        bugs.add(new Bug("Access_Error", 3, "Reporter3"));
+        bugs.add(new Bug("Duplicated_Test_Bug_1", 1, "Reporter4"));
+        bugs.add(new Bug("Duplicated_Test_Bug_1", 1, "Reporter4"));
+        bugs.add(new Bug("Duplicated_Test_Bug_2", 2, "Reporter5"));
+        bugs.add(new Bug("Duplicated_Test_Bug_2", 2, "Reporter5"));
 
-        System.out.println(bug1);
+        // Walidacja ilości unikalnych bugów
+        System.out.println(bugs.size());
 
-//        // WALIDACJA E-MAIL
-        System.out.println(bugReporter.getEmail());
-        bugReporter.setEmail("Mail_bez_malpy_wp.pl");
-        System.out.println(bugReporter.getEmail());
+        // Pkt 2 :  Wyciągnięcie z listy unikalnych wartości:
+        for (Bug bug : bugs) {
+            System.out.println(" Bug Description: " + bug.getBugDescription() + " ; " + " Bug priority = "
+                    + bug.getBugPriority() + " ; " + " Bug reporter: " + bug.getBugReporter());
+        }
 
-//        // WALIDACJA METODY Z INTERFEJSU
-        bug1.setBugStatus(true);
-        System.out.println(bug1.isBugStatus());
-        bug1.setBugStatus(false);
-        System.out.println(bug1.isBugStatus());
+        // Pkt 3 : Sortowanie po Bug Description:
+        Set<Bug> sortedBugs = new TreeSet<>(bugs);
+
+        for (Bug bug : sortedBugs) {
+            System.out.println(" Sorted Bug Description: " + bug.getBugDescription() + " ; " + " Bug Priority = "
+                    + bug.getBugPriority() + " ;" + "Bug Reporter: " + bug.getBugReporter());
+        }
 
     }
 }

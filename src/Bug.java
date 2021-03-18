@@ -1,14 +1,16 @@
-public class Bug implements ConsoleNotification {
+import java.util.Objects;
+
+public class Bug implements Comparable<Bug> {
 
 
     private String bugDescription;
 
     private int bugPriority;
     private boolean bugStatus;
-    private BugReporter bugReporter;
+    private String bugReporter;
 
 
-    public Bug(String bugDescription, int bugPriority, BugReporter bugReporter) {
+    public Bug(String bugDescription, int bugPriority, String bugReporter) {
         this.bugDescription = bugDescription;
         this.bugReporter = bugReporter;
         this.bugPriority = bugPriority;
@@ -53,14 +55,15 @@ public class Bug implements ConsoleNotification {
     }
 
     public void setBugStatus(boolean bugStatus) {
-        notifyStatusChange();
+//        notifyStatusChange();
         this.bugStatus = bugStatus;
     }
 
-    @Override
-    public void notifyStatusChange() {
-        System.out.println("Bug status has just been changed");
-    }
+//    @Override
+//    public void notifyStatusChange() {
+//        System.out.println("Bug status has just been changed");
+//    }
+
 
     @Override
     public String toString() {
@@ -68,16 +71,38 @@ public class Bug implements ConsoleNotification {
                 "bugDescription='" + bugDescription + '\'' +
                 ", bugPriority=" + bugPriority +
                 ", bugStatus=" + bugStatus +
-                ", bugReporter=" + bugReporter +
+                ", bugReporter='" + bugReporter + '\'' +
                 '}';
     }
 
-    public BugReporter getBugReporter() {
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Bug bug = (Bug) o;
+        return bugPriority == bug.bugPriority &&
+                bugStatus == bug.bugStatus &&
+                Objects.equals(bugDescription, bug.bugDescription) &&
+                Objects.equals(bugReporter, bug.bugReporter);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(bugDescription, bugPriority, bugStatus, bugReporter);
+    }
+
+    public String getBugReporter() {
         return bugReporter;
     }
 
-    public void setBugReporter(BugReporter bugReporter) {
+    public void setBugReporter(String bugReporter) {
         this.bugReporter = bugReporter;
+    }
+
+    @Override
+    public int compareTo(Bug bug) {
+        int compareResult = this.getBugDescription().compareTo(bug.getBugDescription());
+        return compareResult;
     }
 }
 
